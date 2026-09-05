@@ -11,7 +11,7 @@ Library System.
 
 ## Installation
 1. Clone this repository to your local machine:
-   `git clone https://github.com/[username-anda]/library-system.git`
+   `git clone https://github.com/nisainlhk/library-system.git`
 2. Navigate to the project directory:
    `cd library-system`
 3. Install the PHP dependencies via Composer:
