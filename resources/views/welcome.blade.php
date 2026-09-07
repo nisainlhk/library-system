@@ -12,6 +12,6 @@
 </head>
 <body>
     <h1>Library System by Nisainlhk</h1>
-    <p>Simple Library Information System - Developed with Laravel</p>
+    <p>Simple Library Information System</p>
 </body>
 </html>

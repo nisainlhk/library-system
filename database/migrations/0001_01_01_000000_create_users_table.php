@@ -36,7 +36,6 @@ return new class extends Migration
             $table->integer('last_activity')->index();
         });
 
-        // Tabel Books yang Anda tambahkan
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
@@ -54,7 +53,7 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
-        Schema::dropIfExists('books'); // <- Tambahan ini penting
+        Schema::dropIfExists('books'); 
     }
 };
 ?>
