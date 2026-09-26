@@ -8,15 +8,18 @@
 
     <ul>   
         @foreach ($books as $book)
-            <li>{{ $book }}</li>
+            <h3>{{ $book->title }}</h3>
+            <p>Author: {{ $book->author }}</p>
+            <p>Year: {{ $book->year }}</p>
+            <p>Stock: {{ $book->stock }}</p> 
         @endforeach
     </ul>
 
-    <!-- @if ($stock > 0)
+    @if ($stock > 0)
         <p>Stok tersedia</p>
     @else
         <p>Stok habis</p>
-    @endif -->
+    @endif
 
 @endsection
     
