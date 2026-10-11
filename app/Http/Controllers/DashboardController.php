@@ -2,49 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Category;
+use App\Models\Member;
+
 class DashboardController extends Controller
 {
     public function index()
     {
-       $books = [
-        'Hujan by Tere Liye (2016)',
-        'Filosofi Teras by Henry Manampiring (2018)',
-        'Becoming by Michelle Obama (2018)',
-        'Homo Deus: A Brief History of Tomorrow by Yuval Noah Harari  (2015)',
-        'Brief Answers to the Big Questions by Stephen Hawking (2018)',
-        'Life 3.0: Being Human in the Age of Artificial Intelligence by Max Tegmark (2017)',
-        'Seni Merayu Tuhan by M. Fauzi Hidayat (2022)',
-        'The Psychology of Money by Morgan Housel (2020)',
-        'Sumur by Eka Kurniawan (2021)',
-        'Glucose Revolution by Jessie Inchauspe (2022)',
-      ];
+        $totalBooks      = Book::count();
+        $totalStock      = (int) Book::sum('stock');
+        $outOfStock      = Book::where('stock', 0)->count();
+        $totalCategories = Category::count();
+        $totalMembers    = Member::count();
 
-      $members = [
-        'Nisa Ainul Hakim',
-        'Kim Doyoung',
-        'Jeong Jaehyun',
-        'Naravit Lertratkosum',
-        'Phuwin Tangsakyuen',
-        ];
+        $latestBooks = Book::with('category')->latest()->take(5)->get();
+        $categories  = Category::withCount('books')->orderByDesc('books_count')->take(6)->get();
 
-      $categories = [
-            'Fiksi',
-            'Non-Fiksi',
-            'Biografi',
-            'Sejarah',
-            'Sains',
-            'Teknologi',
-            'Agama',
-            'Psikologi',
-            'Sastra',
-            'Kesehatan',
-        ];
-
-       $stock = 10;
-
-        return view('dashboard.index', compact('books', 'stock', 'members', 'categories'));
+        return view('dashboard.index', compact(
+            'totalBooks',
+            'totalStock',
+            'outOfStock',
+            'totalCategories',
+            'totalMembers',
+            'latestBooks',
+            'categories'
+        ));
     }
-
-    
-}    
-?>
+}

@@ -2,26 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Member;
 
 class MemberController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $title = 'Daftar Anggota';
-        $description = 'Daftar anggota yang terdaftar di perpustakaan';
-        $members = [
-        'Nisa Ainul Hakim',
-        'Kim Doyoung',
-        'Jeong Jaehyun',
-        'Naravit Lertratkosum',
-        'Phuwin Tangsakyuen',
-        ];
+        $description = 'Anggota yang terdaftar';
+        $members = Member::orderBy('name')->get();
 
         return view('members.index', compact('title', 'description', 'members'));
-    }
-
-    public function show($id)
-    {
-        return "Detail Anggota - ID Anggota: " . $id;
     }
 }
