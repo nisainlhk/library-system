@@ -1,4 +1,3 @@
-{{-- Form bersama untuk create & edit. Variabel: $book, $categories, $submitLabel --}}
 @csrf
 
 <div class="row g-3">
@@ -12,7 +11,7 @@
     <div class="col-md-4">
         <label for="category_id" class="form-label">Kategori</label>
         <select id="category_id" name="category_id" class="form-select @error('category_id') is-invalid @enderror">
-            <option value="">Tanpa kategori</option>
+            <option value="">Pilih kategori</option>
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}" @selected(old('category_id', $book->category_id) == $category->id)>
                     {{ $category->name }}

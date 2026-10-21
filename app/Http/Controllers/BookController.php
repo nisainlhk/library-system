@@ -22,7 +22,9 @@ class BookController extends Controller
     {
         $categories = Category::orderBy('name')->get();
 
-        return view('books.create', ['book' => new Book(), 'categories' => $categories]);
+        return view('books.create', [
+        'book' => new Book()
+        ], compact('categories'));
     }
 
     public function store(Request $request)
