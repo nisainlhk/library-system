@@ -1,0 +1,165 @@
+:root {
+    --ink:        #15173D;
+    --teal:       #E491C9;
+    --teal-dark:  #982598;
+    --paper:      #f3f5f4;
+    --surface:    #ffffff;
+    --line:       #dce2e0;
+    --muted:      #5f6f6c;
+    --ok:         #1f7a4d;
+    --ok-bg:      #e3f3ea;
+    --warn:       #15173D;
+    --warn-bg:    #fbe9e1;
+
+    --s-1: 0.5rem;  
+    --s-2: 1rem;   
+    --s-3: 1.5rem;   
+    --s-4: 2rem;     
+    --s-5: 3rem;     
+    --s-6: 4rem;    
+
+    --radius:     8px;
+    --font-body:  "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-head:  "Literata", Georgia, serif;
+
+    --bs-body-font-family: var(--font-body);
+    --bs-body-font-size: 0.9375rem;
+    --bs-body-color: #22302d;
+    --bs-body-bg: var(--paper);
+    --bs-link-color: var(--teal);
+    --bs-link-hover-color: var(--teal-dark);
+    --bs-border-color: var(--line);
+    --bs-border-radius: var(--radius);
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--paper);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: var(--s-3);
+}
+
+h1 {
+    font-family: var(--font-head);
+    color: var(--ink);
+    margin-bottom: var(--s-3);
+    text-align: center;
+    font-size: var(--s-4);
+}
+
+/* Form Card */
+form {
+    background: var(--surface);
+    padding: var(--s-4);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(21, 23, 61, 0.05);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+form div {
+    margin-bottom: var(--s-3);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--s-1);
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--ink);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--teal);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(228, 145, 201, 0.25);
+}
+
+button {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: var(--teal);
+    color: var(--surface);
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: var(--s-1);
+}
+
+button:hover {
+    background-color: var(--teal-dark);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.alert-success {
+    background-color: var(--ok-bg);
+    border-left: 4px solid var(--ok);
+    color: var(--ok);
+    padding: var(--s-2);
+    border-radius: var(--radius);
+    margin-bottom: var(--s-3);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.alert-success p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.alert-danger {
+    background-color: var(--warn-bg);
+    border-left: 4px solid var(--warn);
+    color: var(--warn);
+    padding: var(--s-2);
+    border-radius: var(--radius);
+    margin-bottom: var(--s-3);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.alert-danger p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.alert-danger p:first-child {
+    margin-top: 0;
+}
+
+.alert-danger p:last-child {
+    margin-bottom: 0;
+}
