@@ -36,6 +36,21 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('members.*') ? 'active' : '' }}" href="{{ route('members.index') }}">Anggota</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('borrowings.*') ? 'active' : '' }}" href="{{ route('borrowings.index') }}">Peminjaman</a>
+                    </li>
+
+                    @can('manage-users')
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">Pengguna</a>
+                        </li>
+                    @endcan
+                    
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link">Logout</button>
+                        </form>
                 </ul>
             </div>
         </div>
@@ -67,14 +82,16 @@
                         <li><a href="{{ route('books.index') }}">Buku</a></li>
                         <li><a href="{{ route('categories.index') }}">Kategori</a></li>
                         <li><a href="{{ route('members.index') }}">Anggota</a></li>
+                        <li><a href="{{ route('borrowings.index') }}">Peminjaman</a></li>
                     </ul>
                 </nav>
 
                 <div>
-                    <div class="footer-heading">Aksi cepat</div>
+                    <div class="footer-heading">Shortcut</div>
                     <ul class="footer-links">
                         <li><a href="{{ route('books.create') }}">Tambah buku</a></li>
                         <li><a href="{{ route('categories.index') }}">Tambah kategori</a></li>
+                        <li><a href="{{ route('borrowings.create') }}">Tambah peminjaman</a></li>
                     </ul>
                 </div>
             </div>

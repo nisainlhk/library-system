@@ -7,7 +7,23 @@
     <div>
         <h1>Dashboard</h1>
     </div>
-    <a href="{{ route('books.create') }}" class="btn btn-primary">Tambah buku</a>
+    <div class="d-flex gap-2">
+        {{-- Menu yang dapat diakses oleh Admin & Petugas --}}
+        <a href="{{ route('books.create') }}" class="btn btn-primary">Tambah buku</a>
+        <a href="{{ route('borrowings.create') }}" class="btn btn-outline-primary">Tambah Peminjaman</a>
+
+        {{-- Menu Kelola Pengguna HANYA tampil untuk Admin menggunakan Gate --}}
+        @can('manage-users')
+            <a href="{{ route('users.index') }}" class="btn btn-outline-primary">Kelola Pengguna</a>
+        @endcan
+
+        {{-- Alternatif menggunakan perbandingan role langsung --}}
+        {{-- 
+        @if (auth()->user()->role === 'admin')
+            <a href="{{ route('users.index') }}" class="btn btn-outline-primary">Kelola Pengguna</a>
+        @endif 
+        --}}
+    </div>
 </div>
 
 <div class="row g-3 mb-4">
