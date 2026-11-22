@@ -8,7 +8,10 @@
         <h1>{{ $title }}</h1>
         <p class="lead-text">{{ $description }}</p>
     </div>
-    <a href="{{ route('books.create') }}" class="btn btn-primary">Tambah buku</a>
+    {{-- Tombol Tambah Buku dibungkus Policy create --}}
+    @can('create', App\Models\Book::class)
+        <a href="{{ route('books.create') }}" class="btn btn-primary">Tambah buku</a>
+    @endcan
 </div>
 
 <div class="row g-4">
@@ -38,13 +41,21 @@
 
                     <div class="book-actions">
                         <a href="{{ route('books.show', $book) }}" class="btn btn-sm btn-outline-primary">Detail</a>
-                        <a href="{{ route('books.edit', $book) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <form action="{{ route('books.destroy', $book) }}" method="POST"
-                              onsubmit="return confirm('Hapus buku ini?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
-                        </form>
+                        
+                        {{-- Tombol Edit dibungkus Policy update --}}
+                        @can('update', $book)
+                            <a href="{{ route('books.edit', $book) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        @endcan
+
+                        {{-- Form Hapus dibungkus Policy delete --}}
+                        @can('delete', $book)
+                            <form action="{{ route('books.destroy', $book) }}" method="POST"
+                                  onsubmit="return confirm('Hapus buku ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
+                            </form>
+                        @endcan
                     </div>
                 </div>
             </article>
@@ -54,7 +65,9 @@
             <div class="empty-state">
                 <h2>Belum ada buku</h2>
                 <p>Tambahkan buku pertama untuk mulai mengisi koleksi.</p>
-                <a href="{{ route('books.create') }}" class="btn btn-primary">Tambah buku</a>
+                @can('create', App\Models\Book::class)
+                    <a href="{{ route('books.create') }}" class="btn btn-primary">Tambah buku</a>
+                @endcan
             </div>
         </div>
     @endforelse

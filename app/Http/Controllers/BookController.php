@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class BookController extends Controller
 {
@@ -72,13 +73,12 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
-        if ($book->cover_image) {
-            Storage::disk('public')->delete($book->cover_image);
-        }
-
+        Gate::authorize('delete', $book);
         $book->delete();
 
-        return redirect()->route('books.index')->with('success', 'Buku berhasil dihapus.');
+        return redirect()
+            ->route('books.index')
+            ->with('success', 'Buku berhasil dihapus.');
     }
 
     private function validated(Request $request): array
